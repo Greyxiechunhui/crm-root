@@ -13,6 +13,7 @@
         <module>crm-service</module>
         <module>crm-mapper</module>
         <module>crm-web</module>
+        <module>common-cors</module>
     </modules>
 
 
