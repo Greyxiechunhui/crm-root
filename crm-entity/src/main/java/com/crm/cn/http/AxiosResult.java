@@ -34,9 +34,18 @@ public class AxiosResult extends HashMap<String,Object> {
     public static AxiosResult error(){
         return new AxiosResult(AxiosStatus.ERROR);
     }
+
     public static AxiosResult error(AxiosStatus axiosStatus){
         return new AxiosResult(axiosStatus);
     }
+
+    public static AxiosResult error(AxiosStatus axiosStatus,Object obj){
+        AxiosResult axiosResult = new AxiosResult(axiosStatus);
+        axiosResult.put(DATA,obj);
+        return axiosResult;
+
+    }
+
     public static AxiosResult error(Object obj){
         AxiosResult axiosResult = new AxiosResult(AxiosStatus.ERROR);
         axiosResult.put(DATA,obj);

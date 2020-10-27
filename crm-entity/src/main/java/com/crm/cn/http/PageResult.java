@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class PageResult {
 
-    private Object recerds;
+    private Object records;
 
     private Long total;
 

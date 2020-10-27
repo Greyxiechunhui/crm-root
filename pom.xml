@@ -14,6 +14,11 @@
         <module>crm-mapper</module>
         <module>crm-web</module>
         <module>common-cors</module>
+        <module>common-aliyun-upload</module>
+        <module>common-valicator</module>
+        <module>common-email</module>
+        <module>common-threadpool</module>
+        <module>common-getBean</module>
     </modules>
 
 

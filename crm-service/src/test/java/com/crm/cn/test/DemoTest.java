@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crm.cn.entity.BaseCategory;
 import com.crm.cn.mapper.BaseCategoryMapper;
 import com.crm.cn.service.IBaseCategoryService;
+import com.crm.cn.service.ISysMenuService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +42,17 @@ public class DemoTest {
 //
 //   }
     @Autowired
-    private IBaseCategoryService iBaseCategoryService;
+    private ISysMenuService ISysMenuService;
     @Test
     public void doTest(){
-        IPage<BaseCategory> page = new Page<BaseCategory>(1,3);
 
-        IPage<BaseCategory> baseCategoryIPage = iBaseCategoryService.pageList(page);
+        System.out.println(ISysMenuService.getAllMenuTree());
 
-        System.out.println(page == baseCategoryIPage);
+//        IPage<BaseCategory> page = new Page<BaseCategory>(1,3);
+//
+//        IPage<BaseCategory> baseCategoryIPage = iBaseCategoryService.pageList(page);
+//
+//        System.out.println(page == baseCategoryIPage);
     }
 
 }

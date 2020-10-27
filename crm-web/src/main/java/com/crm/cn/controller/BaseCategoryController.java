@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -29,6 +30,8 @@ public class BaseCategoryController {
     /**
      * 查询所有
      *
+     * 商品 要用分类信息
+     *
      * @return
      */
     @GetMapping
@@ -41,10 +44,9 @@ public class BaseCategoryController {
      */
     @GetMapping("page")
     public AxiosResult pageList(@RequestParam(defaultValue = "1") int currentPage,
-                                @RequestParam(defaultValue = "2") int pageSize) {
+                                @RequestParam(defaultValue = "5") int pageSize) {
         Page<BaseCategory> page = new Page<BaseCategory>(currentPage, pageSize);
-        IPage<BaseCategory> page1 = IBaseCategoryService.pageList(page);
-        return AxiosResult.success(PageResult.instance(page1.getRecords(), page1.getTotal()));
+        return AxiosResult.success(IBaseCategoryService.pageList(page));
     }
 
     @PostMapping
@@ -66,6 +68,16 @@ public class BaseCategoryController {
     public AxiosResult deleteById(@PathVariable Serializable id){
         IBaseCategoryService.deleteById(id);
         return AxiosResult.success();
+    }
+
+
+    @GetMapping("categoryTree")
+    public AxiosResult getCategoryTree(){
+        //
+        List<BaseCategory> treeList = IBaseCategoryService.getCategoryTree();
+
+
+        return AxiosResult.success(treeList);
     }
 
 }
