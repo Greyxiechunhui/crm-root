@@ -2,12 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
     <context:component-scan base-package="com.crm.cn.controller"/>
     <context:component-scan base-package="com.crm.cn.exception"/>
+    <context:component-scan base-package="com.crm.cn.login"/>
+    <context:component-scan base-package="com.crm.cn.annatation"/>
+    <!--<context:component-scan base-package="com.crm.cn.interceptor"/>-->
 
 
 
@@ -20,6 +23,14 @@
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login"/>
+            <bean class="com.crm.cn.interceptor.JwtAuthorizationInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--<bean id="poolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">-->
         <!--<property name="corePoolSize" value="30"/>-->
         <!--<property name="maxPoolSize" value="100"/>-->
@@ -27,4 +38,6 @@
 
 
     <!--<task:annotation-driven executor="poolTaskExecutor"/>-->
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 </beans>

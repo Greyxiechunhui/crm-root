@@ -3,6 +3,7 @@ package com.crm.cn.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.crm.cn.annatation.HasPerm;
 import com.crm.cn.entity.BaseGood;
 import com.crm.cn.http.AxiosResult;
 import com.crm.cn.http.PageResult;
@@ -48,12 +49,13 @@ public class BaseGoodController {
     }
 
     @PostMapping
+    @HasPerm(perm = "base:good:add")
     public AxiosResult add(@RequestBody BaseGood baseGood) {
-
         iBaseGoodService.add(baseGood);
         return AxiosResult.success();
     }
     @PutMapping
+    @HasPerm(perm = "base:good:edit")
     public AxiosResult update(@RequestBody BaseGood baseGood){
         iBaseGoodService.update(baseGood);
         return AxiosResult.success();
@@ -63,6 +65,7 @@ public class BaseGoodController {
         return AxiosResult.success(iBaseGoodService.findById(id));
     }
     @DeleteMapping("{id}")
+    @HasPerm(perm = "base:good:delete")
     public AxiosResult deleteById(@PathVariable Serializable id){
         iBaseGoodService.deleteById(id);
         return AxiosResult.success();

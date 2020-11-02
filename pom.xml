@@ -19,6 +19,8 @@
         <module>common-email</module>
         <module>common-threadpool</module>
         <module>common-getBean</module>
+        <module>common-useragent</module>
+        <module>common-cache</module>
     </modules>
 
 

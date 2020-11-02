@@ -1,8 +1,10 @@
 package com.crm.cn.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.crm.cn.entity.SysMenu;
 import com.crm.cn.entity.SysUser;
 import com.crm.cn.http.PageResult;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -49,4 +51,14 @@ public interface ISysUserService {
      * @param id
      */
     void deleteById(Serializable id);
+
+    SysUser getUserByUserName(String userName);
+
+
+    List<SysMenu> findUserAllMenu(Long userId);
+
+    List<SysMenu> findUserRouter(Long userId);
+
+    List<SysMenu> findUserBtnPerm(Long userId);
+
 }
